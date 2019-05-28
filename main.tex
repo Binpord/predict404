@@ -2,27 +2,23 @@
 \usepackage{mipt-thesis-biblatex}
 \addbibresource{predict404.bib}
 
-\input{title.tex}
-
 \begin{document}
 
-\frontmatter
-\titlecontents
+\setcounter{page}{2}
+\chapter{Аннотация}
 
-\mainmatter
-
+\newpage
+\tableofcontents
+\newpage
 
 \chapter{Введение}
 
 Здесь идет текст. Вот так выглядит ссылка на библиографию \cite{Meneses2012}. Аналогично добавляются еще главы, внутри них можно объявлять секции с помощью \verb|\section|.
 
+\chapter{Основное содержание}
 
-\backmatter
+\chapter{Заключение}
 
 \printbib
-
-\chapter{Благодарности}
-
-Благодарности идут тут.
 
 \end{document}
