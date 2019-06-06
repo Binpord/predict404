@@ -9,3 +9,29 @@
 \section{Обучение модели}
 
 Для подбора гиперпараметров и получения оценки точности и полноты использовался сеточный поиск с оценкой точности и полноты с использованием 5-кратной кроссвалидации. Для случайного леса и чрезвычайно случайных деревьев подбиралось количество деревьев в ансамбле. Для классификатора CatBoost кроме этого подбиралась максимальная глубина дерева.
+
+Результаты сеточного поиска представлены на рисунках \ref{fig:toloka_randomforest}, \ref{fig:toloka_extratrees} и \ref{fig:toloka_catboost}.
+
+\begin{figure}
+    \centering
+    \includegraphics{./images/toloka_randomforest_precision.pdf}
+    \includegraphics{./images/toloka_randomforest_recall.pdf}
+    \caption{Результаты сеточного поиска для модели RandomForestClassifier}
+    \label{fig:toloka_randomforest}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics{./images/toloka_extratrees_precision.pdf}
+    \includegraphics{./images/toloka_extratrees_recall.pdf}
+    \caption{Результаты сеточного поиска для модели ExtraTreesClassifier}
+    \label{fig:toloka_extratrees}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics{./images/toloka_catboost_precision.pdf}
+    \includegraphics{./images/toloka_catboost_recall.pdf}
+    \caption{Результаты сеточного поиска для модели CatBoostClassifier}
+    \label{fig:toloka_catboost}
+\end{figure}
