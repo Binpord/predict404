@@ -1,13 +1,91 @@
 \documentclass{beamer}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtext}
+\usepackage[T1,TS1,T2A]{fontenc}
+\usepackage{mathptmx}   % Times New Roman font
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
 \usetheme{Boadilla}
 
-\title{Детектирование неработающих видео по статистике просмотров}
+\title{Детектирование неработающих видео \\ по статистике просмотров}
 \author{Шиянов Вадим}
 \institute{МФТИ (НИУ)}
 \date{\today}
 
 \begin{document}
+
 \begin{frame}
-\titlepage
+    \titlepage
 \end{frame}
+
+\begin{frame}{Содержание}
+    \tableofcontents
+\end{frame}
+
+\section{Введение}
+
+\subsection{Актуальность}
+\subsection{предмет исследования}
+
+\begin{frame}{Неработающие видео}
+    \includegraphics[width=\textwidth]{../images/yandex_video_bad.png}
+\end{frame}
+
+\section{Предлагаемое решение}
+
+\subsection{Данные}
+
+\begin{frame}{Исходные данные}
+    \begin{table}
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            Плеер & Видео & Длительность, с & Просмотр, с & Старт & Ошибка \\
+            \hline
+            Плеер1 & Видео1 & 100 & 10 & True & \\
+            \hline
+            Плеер2 & Видео2 & 200 & 180 & True & \\
+            \hline
+            Плеер3 & Видео3 & 0 & 5 & & True \\
+            \hline
+            \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\subsection{Обучение модели}
+
+\begin{frame}{Обучение модели}
+    \begin{table}
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Модель & Точность, \% & Полнота, \% \\
+            \hline
+            RandomForestClassifier & 72.0 & 50.8 \\
+            \hline
+            ExtraTreesClassifier & 74.3 & 47.2 \\
+            \hline
+            CatBoostClassifier & 80.3 & 53.3 \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Обучение модели}
+    \includegraphics[width=\textwidth]{../images/toloka_catboost_precision.pdf}
+\end{frame}
+
+\begin{frame}{Обучение модели}
+    \includegraphics[width=\textwidth]{../images/toloka_catboost_recall.pdf}
+\end{frame}
+
+\section{Заключение}
+
+\begin{frame}{Заключение}
+    Спасибо за внимание!
+\end{frame}
+
 \end{document}
