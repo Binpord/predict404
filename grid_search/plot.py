@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 
+METRICS = ["precision", "recall"]
+
+
 def figure_size(width, fraction=1):
     fig_width_pt = width * fraction
     inches_per_pt = 1 / 72.27
@@ -57,16 +60,16 @@ def plot_group(group, change, ax, metric, label=None):
     ax.set_ylabel(metric)
 
 
-def plot_single_param(cv_results, change, outputs, metrics=["precision", "recall"]):
-    for metric, output in zip(metrics, outputs):
+def plot_single_param(cv_results, change, outputs):
+    for metric, output in zip(METRICS, outputs):
         fig = plt.figure()
         ax = fig.gca()
         plot_group(cv_results, change, ax, metric)
         fig.savefig(output, bbox_inches='tight')
 
 
-def plot_double_param(cv_results, change, outputs, param, metrics=["precision", "recall"]):
-    for metric, output in zip(metrics, outputs):
+def plot_double_param(cv_results, change, outputs, param):
+    for metric, output in zip(METRICS, outputs):
         fig = plt.figure()
         ax = fig.gca()
         for index, group in cv_results.groupby(f"param_{param}"):
@@ -74,6 +77,12 @@ def plot_double_param(cv_results, change, outputs, param, metrics=["precision", 
 
         ax.legend(loc="best")
         fig.savefig(output, bbox_inches='tight')
+
+
+def get_other_metric(metric):
+    metrics = METRICS.copy()
+    metrics.remove(metric)
+    return metrics[0]
 
 
 if __name__ == "__main__":
@@ -86,7 +95,10 @@ if __name__ == "__main__":
     else:
         plot_double_param(cv_results, args.change, outputs, args.param)
 
-    for metric in ["precision", "recall"]:
+    for metric in METRICS:
+        other_metric = get_other_metric(metric)
         idxmax = cv_results[f"mean_test_{metric}"].idxmax()
-        best_params, metric_max = cv_results["params"][idxmax], cv_results[f"mean_test_{metric}"][idxmax]
-        print(f"{metric} reaches maximum of {metric_max} at {best_params}")
+        best_params = cv_results["params"][idxmax]
+        metric_max = cv_results[f"mean_test_{metric}"][idxmax]
+        other_metric_val = cv_results[f"mean_test_{other_metric}"][idxmax]
+        print(f"{metric} reaches maximum of {metric_max} with {other_metric} of {other_metric_val} at {best_params}")
