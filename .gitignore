@@ -1,4 +1,11 @@
 main.*
 !main.tex
+!main.pdf
 *.fls
 predict404.bib.*
+.DS_Store
+grid_search/precision.pdf
+grid_search/recall.pdf
+.vscode/launch.json
+.vscode/settings.json
+.vscode/.ropeproject/config.py
